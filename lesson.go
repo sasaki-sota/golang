@@ -1,23 +1,18 @@
 package main
 
 import (
-	"strconv"
 	"fmt"
 )
 
 func main() {
-	var x int = 1
-	xx := float64(x)
-	fmt.Printf("%T %v %f\n", xx, xx, xx)
-	// このような形で肩の変換をすることができるようになる
+	var a [2]int
+	a[0]= 100
+	a[1] = 200
+	fmt.Println(a)
 
-	var y float64 = 1.2
-	yy := int(y)
-	fmt.Printf("%T %v %d\n", yy,yy,yy)
+	var b [2]int = [2]int{100, 200}
+	// これで初期値を設定することができる
+	fmt.Println(b)
 
-	var s string = "12"
-	i, _:= strconv.Atoi(s)
-	// strconvは文字列のコンバージョン
-	fmt.Printf("%T %v", i, i)
-	// _を使うことでエラーを防ぐことができる
+
 }
