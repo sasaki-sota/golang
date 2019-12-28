@@ -5,6 +5,11 @@ import (
 )
 
 func main() {
-	n := make([]int, 3, 5)
-	fmt.Printf("len=%d cap=%d value=%v", len(n), cap(n), n)
+	m := map[string]int{"apple": 100, "banana": 200}
+	fmt.Println(m)
+	// pythonの地所型と似ている
+	fmt.Println(m["apple"])
+	m["banana"] = 300
+	fmt.Println(m)
+
 }
