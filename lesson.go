@@ -1,19 +1,20 @@
 package main
 
 import (
-	"strings"
 	"fmt"
 )
-
+// boolearn型の指定の仕方
 func main() {
-	fmt.Println("Hello world")
-	fmt.Println("Hello" + "world")
-	fmt.Println(string("Hello world"[0]))
+	var t , f bool = true,false
+	fmt.Printf("%T %v\n", t, t)
+	fmt.Printf("%T %v\n", f, f)
 
-	var s string = "Hello world"
-	
-	fmt.Println(strings.Replace(s,"H","X",1))
-	
-	// strings.relace(stringsはimportする必要がある)
-	// 文字列を置き換えてコピーして出力している
+	fmt.Println(true && true)
+	fmt.Println(true && false)
+	fmt.Println(false && false)
+	// 比較をしてくれる
+	fmt.Println(true || true)
+	fmt.Println(true || false)
+	fmt.Println(false || false)
+	// こっちはどちらかがtrueであれば
 }
