@@ -5,11 +5,13 @@ import (
 )
 
 func main() {
-	m := map[string]int{"apple": 100, "banana": 200}
-	fmt.Println(m)
-	// pythonの地所型と似ている
-	fmt.Println(m["apple"])
-	m["banana"] = 300
-	fmt.Println(m)
+	b := []byte{72, 73}
+	// {}のカッコないで初期値を設定することができるようになる
+	fmt.Println(b)
+	fmt.Println(string(b))
+	// バイト型で表示するようになる
 
+	c := []byte("HI")
+	fmt.Println(c)
+	
 }
