@@ -4,19 +4,20 @@ import (
 	"fmt"
 )
 
-func incrementGneration() (func() int) {
-	x := 0
-	return func() int {
-		x++
-		return x
-	}
+func foo(params ...int) {
+fmt.Println(len(params), params)
+for _, param := range params{
+	fmt.Println(param)
+}
+// ...で可変長のものに対応することができるようになうる
 }
 	
 func main() {
-	counter := incrementGneration()
-	// functionのものが入っている
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
-	fmt.Println(counter())
+	foo(10, 20)
+	foo(10, 20, 30)
+
+	s := []int{1,2,3}
+	fmt.Println(s)
+
+	foo(s...)
 }
