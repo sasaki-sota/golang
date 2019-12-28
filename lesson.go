@@ -1,19 +1,19 @@
 package main
 
 import (
+	"strings"
 	"fmt"
 )
 
 func main() {
-	var (
-		u8 uint8 		= 255
-		i8 int8 		= 127
-		f32 float32 	= 0.2
-		c64 complex64 	= -5 + 12i
-	)
-	// このように書くことが推奨されている
-	fmt.Println(u8, i8, f32, c64)
+	fmt.Println("Hello world")
+	fmt.Println("Hello" + "world")
+	fmt.Println(string("Hello world"[0]))
 
-	fmt.Printf("%T %v", u8, u8)
-	// タイプを調べるときにfを使う
+	var s string = "Hello world"
+	
+	fmt.Println(strings.Replace(s,"H","X",1))
+	
+	// strings.relace(stringsはimportする必要がある)
+	// 文字列を置き換えてコピーして出力している
 }
