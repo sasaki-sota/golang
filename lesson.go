@@ -6,19 +6,22 @@ import (
 	"os"
 )
 
-func LoggingSettings(logFile string) {
-	logFile, _ := os.OpenFile(logFile, os)
-}
-// logで時間も一緒に出力される
+// エラー処理の文
 func main() {
-	file, err := os.Open("database")
+	file, err := os.Open("./lesson.go")
 	if err != nil {
-		log.Fatalln("Exit")
+		log.Fatal("error")
 	}
+	defer file.Close()
+	data := make([]byte, 100)
+	count, err := file.Read(data)
+	if err != nil {
+		log.Fatalln("Error")
+	}
+	fmt.Println(count, string(data))
 
-	log.Println("logging")
-	log.Printf("%T %v", "test", "test")
-
-	log.Fatalln("error")
-	fmt.Println("okk")
+	err = os.Chdir("test")
+	if err != nil {
+		log.Fatalln("error")
+	}
 }
