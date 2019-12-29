@@ -4,20 +4,43 @@ import (
 	"fmt"
 )
 
-func foo(params ...int) {
-fmt.Println(len(params), params)
-for _, param := range params{
-	fmt.Println(param)
+func by2(num int) string {
+	if num % 2 == 0 {
+		return "ok"
+	}else{
+		return "no"
+	}
 }
-// ...で可変長のものに対応することができるようになうる
-}
-	
+
 func main() {
-	foo(10, 20)
-	foo(10, 20, 30)
+	result := by2(10)
 
-	s := []int{1,2,3}
-	fmt.Println(s)
+	if result == "ok" {
+		fmt.Println("great")
+	}
 
-	foo(s...)
+	// セミコロンでつなげることができる
+	if result2 := by2(10); result2 == "ok"{
+		fmt.Println("great 2")
+	}
+
+	num := 4
+	if num % 2 == 0 {
+		fmt.Println("BY 2")
+	}else
+	{
+		fmt.Println("else")
+	}
+
+	x, y := 10, 10
+	if x == 10 && y == 10 {
+		fmt.Println("&&")
+	}
+	// この記述は両方正しい場合
+
+	if x == 10 || y == 10 {
+		fmt.Println("||")
+	}
+	// どちらか正しい場合
+
 }
