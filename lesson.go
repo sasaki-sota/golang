@@ -1,27 +1,24 @@
 package main
 
 import (
-	"os"
 	"fmt"
+	"log"
+	"os"
 )
-// main関数の処理が終わった後に実行される
-func main() {
-	defer fmt.Println("world")
 
-	fmt.Println("hello")
-
-	fmt.Println("run")
-	defer fmt.Println(1)
-	defer fmt.Println(2)
-	defer fmt.Println(3)
-	fmt.Println("success")
-	// deferは下のものから表示される
-
-	file, _ := os.Open("./lesson.go")
-	defer file.Close()
-	data := make([]byte, 100)
-	file.Read(data)
-	fmt.Println(string(data))
-	// 出力してキャストする
+func LoggingSettings(logFile string) {
+	logFile, _ := os.OpenFile(logFile, os)
 }
+// logで時間も一緒に出力される
+func main() {
+	file, err := os.Open("database")
+	if err != nil {
+		log.Fatalln("Exit")
+	}
 
+	log.Println("logging")
+	log.Printf("%T %v", "test", "test")
+
+	log.Fatalln("error")
+	fmt.Println("okk")
+}
