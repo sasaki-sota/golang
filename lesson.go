@@ -4,43 +4,18 @@ import (
 	"fmt"
 )
 
-func by2(num int) string {
-	if num % 2 == 0 {
-		return "ok"
-	}else{
-		return "no"
-	}
-}
-
 func main() {
-	result := by2(10)
-
-	if result == "ok" {
-		fmt.Println("great")
+	// iは０で定義してセミコロンで続けて１０以下の場合はfor文で回すことができる
+	for i := 0; i<10; i++ {
+		if i ==3 {
+			fmt.Println("contineu")
+			continue
+		}
+		if i > 5{
+			fmt.Println("break")
+			break
+			// break文を入れると終了する
+		}
+		fmt.Println(i)
 	}
-
-	// セミコロンでつなげることができる
-	if result2 := by2(10); result2 == "ok"{
-		fmt.Println("great 2")
-	}
-
-	num := 4
-	if num % 2 == 0 {
-		fmt.Println("BY 2")
-	}else
-	{
-		fmt.Println("else")
-	}
-
-	x, y := 10, 10
-	if x == 10 && y == 10 {
-		fmt.Println("&&")
-	}
-	// この記述は両方正しい場合
-
-	if x == 10 || y == 10 {
-		fmt.Println("||")
-	}
-	// どちらか正しい場合
-
 }
