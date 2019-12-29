@@ -1,32 +1,27 @@
 package main
 
 import (
+	"os"
 	"fmt"
-	"time"
 )
-
-func getOsName() string{
-	return "mac"
-}
-
+// main関数の処理が終わった後に実行される
 func main() {
-	os := getOsName()
-	// swith文で判定をしていく
-	switch os {
-	case "mac":
-		fmt.Println("mac!")
-	case "windows":
-		fmt.Println("windows")
-	default:
-		fmt.Println("default")
-	}
+	defer fmt.Println("world")
 
-	t := time.Now() 
-	fmt.Println(t.Hour())
-	switch {
-	case t.Hour() <12:
-		fmt.Println("Morning")
-	case t.Hour() <17:
-		fmt.Println("afternppn")
-	}
+	fmt.Println("hello")
+
+	fmt.Println("run")
+	defer fmt.Println(1)
+	defer fmt.Println(2)
+	defer fmt.Println(3)
+	fmt.Println("success")
+	// deferは下のものから表示される
+
+	file, _ := os.Open("./lesson.go")
+	defer file.Close()
+	data := make([]byte, 100)
+	file.Read(data)
+	fmt.Println(string(data))
+	// 出力してキャストする
 }
+
