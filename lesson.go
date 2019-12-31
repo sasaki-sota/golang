@@ -1,32 +1,37 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
-type Vertex struct {
-	X, Y int
+type (v Vertex) Area() int{
+	return v.x * v.y
 }
 
-// classのように書くことができる
-func (v Vertex) Area() int{
-	return v.X * v.Y
+func (v *Vertex) Scale(i int) {
+	v.x = v.x * i
+	v.y = v.y * i
 }
 
-func Area(v Vertex) int {
-	return v.X * v.Y
+type Vertex3D struct{
+	Vertex
+	z int
 }
 
-func (v *Vertex) Scale(i int){
-	v.X = v.X * i
-	v.Y = v.Y * i
+func (v Vertex3D) Area3D() int{
+	return v.x * v.y
+}
+
+func (v Vertex3D) Scale3D(i int) {
+	v.x = v.x * i
+	v.y = v.y * i
+	v.z = v.z * i
+}
+
+func New(x, y int) *Vertex3D{
+	return &Vertex3D{x, y}
 }
 
 func main() {
-	v := Vertex{3, 4}
-	fmt.Println(Area(v))
-	fmt.Println(v.Area())
-
+	v := New(3, 4)
 	v.Scale(10)
+	fmt.Println(v.Area())
 }
-// .で表現できるものをメソッドという
