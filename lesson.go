@@ -4,24 +4,25 @@ import (
 	"fmt"
 )
 
-// *を入れることによってバイトのポインタに関係することができるようになる
+// structはnilがない
+type Vertex struct {
+	// x int
+	// y int
+	X, Y int
+}
+// 大文字でないとできないので気をつける必要がある
+
 func main() {
-	// var p *int = new(int)
-	// fmt.Println(*p)
-	// // アドレスは帰ってくる
-	// *p++
-	// fmt.Println(*p)
+	v := Vertex{x: 1, y: 2}
+	fmt.Println(v)
+	fmt.Println(v.x )
+	// 一つだけの取り組みも可能
 
-	// var p2 *int
-	// fmt.Println(p2)
+	v2 := Vertex{x: 1}
+	fmt.Println(v2)
 
-	// newとmakeの違い
-	s := make([]int, 0)
-	fmt.Printf("%T\n", s)
+	v3 := Vertex{}
+	fmt.Println(v3)
 
-	m := make(map[string]int)
-	fmt.Printf("%T\n", m)
-
-	var p *int = new(int)
-	fmt.Println("%T\n", p)
+	// 何も入れないとできない
 }
