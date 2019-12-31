@@ -2,7 +2,11 @@ package main
 
 import "fmt"
 
-type (v Vertex) Area() int{
+type Vertex struct {
+	x, y int
+}
+
+func (v Vertex) Area() int{
 	return v.x * v.y
 }
 
@@ -11,7 +15,7 @@ func (v *Vertex) Scale(i int) {
 	v.y = v.y * i
 }
 
-type Vertex3D struct{
+type Vertex3D struct {
 	Vertex
 	z int
 }
@@ -20,14 +24,14 @@ func (v Vertex3D) Area3D() int{
 	return v.x * v.y
 }
 
-func (v Vertex3D) Scale3D(i int) {
+func (v *Vertex3D) Scale3D(i int) {
 	v.x = v.x * i
 	v.y = v.y * i
 	v.z = v.z * i
 }
 
 func New(x, y int) *Vertex3D{
-	return &Vertex3D{x, y}
+	return &Vertex{x, y}
 }
 
 func main() {
