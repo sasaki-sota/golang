@@ -3,20 +3,21 @@ package main
 import (
 	"fmt"
 )
-// メソッド名のみを定義している
-type Human interface {
-	say()
-}
 
-type Person struct {
-	Name string
-}
-
-func (p person) say() {
-	fmt.Println(p.name)
+func do(i interface{}) {
+	switch v := i.(type) {
+	case int:
+		fmt.Println(v * 2)
+	case string:
+		fmt.Println(v + "!")
+	default:
+		fmt.Println("I don't know sorry! %T\n", v)
+	}
 }
 
 func main() {
-	var mike Human = Person{"Mike"}
-	mike.say()
+	do(10)
+	do("Mike")
+	do(true)	
 }
+// それぞれの処理に応用することができるようになる
