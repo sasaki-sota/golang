@@ -1,41 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
-type Vertex struct {
-	x, y int
-}
-
-func (v Vertex) Area() int{
-	return v.x * v.y
-}
-
-func (v *Vertex) Scale(i int) {
-	v.x = v.x * i
-	v.y = v.y * i
-}
-
-type Vertex3D struct {
-	Vertex
-	z int
-}
-
-func (v Vertex3D) Area3D() int{
-	return v.x * v.y
-}
-
-func (v *Vertex3D) Scale3D(i int) {
-	v.x = v.x * i
-	v.y = v.y * i
-	v.z = v.z * i
-}
-
-func New(x, y int) *Vertex3D{
-	return &Vertex{x, y}
+type MyInt int 
+// 自分のものに置き換える
+func (i MyInt) Double() int {
+	return int(i * 2)
 }
 
 func main() {
-	v := New(3, 4)
-	v.Scale(10)
-	fmt.Println(v.Area())
+	myInt := MyInt(10)
+	fmt.Println(myInt.Double())
 }
