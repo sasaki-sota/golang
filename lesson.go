@@ -3,14 +3,20 @@ package main
 import (
 	"fmt"
 )
+// メソッド名のみを定義している
+type Human interface {
+	say()
+}
 
-type MyInt int 
-// 自分のものに置き換える
-func (i MyInt) Double() int {
-	return int(i * 2)
+type Person struct {
+	Name string
+}
+
+func (p person) say() {
+	fmt.Println(p.name)
 }
 
 func main() {
-	myInt := MyInt(10)
-	fmt.Println(myInt.Double())
+	var mike Human = Person{"Mike"}
+	mike.say()
 }
