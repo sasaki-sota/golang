@@ -1,17 +1,18 @@
 package main
 
-// io/ioutilはファイルの読み込みなどについて
-// ここでインポートすることによって.をつけた後に自動的に候補を表示してくれる
 import (
 	"fmt"
+	"log"
+	"net/http"
 	"io/ioutil"
 )
 
+
+
 type Page struct{
 	Title string
-	Body  []byte
+	Body []byte
 }
-// ここの部分で肩を定義してメソッドを作成しているイメージ
 
 func (p *Page) save() error {
 	filename := p.Title + ".txt"
@@ -27,10 +28,17 @@ func loadPage(title string) (*Page, error) {
 	return &Page{Title: title, Body: body}, nil
 }
 
-func main() {
-	p1 := &Page{Title: "test", Body: []byte("This is a sampke Page.")}
-	p1.save()
-
-	p2, _ := loadPage(p1.Title)
-	fmt.Println(p2.Body)
+// wに対しての返答が返ってくるような仕組みになっている
+func viewHandler(w http.ResponseWriter, r *http.Request){
+	title := r.URL.Path[len("/view/"):]
+	p, _ := loadPage(title)
+	fmt.Fprintf(w, "<h1>%s</h1><div>%s</div>", p.Title, p.Body)
 }
+
+// :の前に何も書かなければローカルホストになる
+func main() {
+	http.HandleFunc("/view/", viewHandler)
+	log.Fatal(http.ListenAndServe(":8080", nil))
+}
+// ListenAndServeは第一引数はアドレスで第二引数はハンドラーとなっている
+// Fprintはioに関係するような出力の仕方
