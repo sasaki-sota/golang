@@ -32,11 +32,14 @@ func renderTemplate(w http.ResponseWriter, tmpl string, p *Page) {
 	t, _ := template.ParseFiles(tmpl + ".html")
 	t.Execute(w, p)
 }
-
-// wに対しての返答が返ってくるような仕組みになっている
+// もし何もないページがなかったら
 func viewHandler(w http.ResponseWriter, r *http.Request){
 	title := r.URL.Path[len("/view/"):]
-	p, _ := loadPage(title)
+	p, err := loadPage(title)
+	if err != nil{
+		http.Redirect(w, r, "/edit/"+title, http.StatusFound)
+		return 
+	}
 	renderTemplate(w, "view", p)
 }
 
@@ -49,16 +52,22 @@ func editHandler(w http.ResponseWriter, r *http.Request){
 	renderTemplate(w, "edit", p)
 }
 
-// :の前に何も書かなければローカルホストになる
+func saveHandler(w http.ResponseWriter, r *http.Request){
+	title := r.URL.Path[len("/save/"):]
+	body := r.FormValue("body")
+	p := &Page{Title: title, Body: []byte(body)}
+	err := p.save()
+	if err != nil{
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+		http.Redirect(w, r, "/view/"+title, http.StatusFound)
+}
+// エラー分とリダイレクトをセットしていく
+
+
 func main() {
 	http.HandleFunc("/view/", viewHandler)
 	http.HandleFunc("/edit/", editHandler)
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }
-// ListenAndServeは第一引数はアドレスで第二引数はハンドラーとなっている
-// Fprintはioに関係するような出力の仕方
-
-
-// goでサーバを立ち上げるときに立ち上がらないときはgolangのディレクトリからpsとうち
-// kill -KILL 4757のような番号を入力して削除した再度でバックする必要がある
-// またはvsコードのていしボタンを押す
